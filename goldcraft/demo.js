@@ -3,7 +3,7 @@
 (function () {
   "use strict";
   var $ = function (s, r) { return (r || document).querySelector(s); };
-  var ART = "/goldcraft/art/", SPRITE = "/goldcraft/icons.svg";
+  var ART = "/goldcraft/art/", SPRITE = "/goldcraft/icons.svg?v=f414ef93";
 
   // ---------- money, exactly like ns.Money / ns.MoneyShort / ns.Signed ----------
   var COIN = { g: '<img class="coin" src="' + ART + 'coin_g.webp" alt="g">', s: '<img class="coin" src="' + ART + 'coin_s.webp" alt="s">', c: '<img class="coin" src="' + ART + 'coin_c.webp" alt="c">' };

@@ -19,3 +19,6 @@ Static site for SpawnFrame, hosted on Cloudflare Pages. No build step: every pus
 ## To do
 - Screenshots: put new PNGs in `goldcraft/img/` (home.png, market.png, bags.png, auctions.png) and uncomment the screenshots section in `goldcraft/index.html`.
 - Add the Wago link next to CurseForge once the addon is listed there.
+
+## Before every commit
+Run `python3 tools/stamp.py`. It adds a version stamp (`?v=…`) to the site's CSS, JS and SVG links. Cloudflare lets browsers keep those files for up to 4 hours, so without a new stamp visitors can get a new page with an old script.
