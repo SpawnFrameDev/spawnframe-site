@@ -5,7 +5,7 @@ Static site for SpawnFrame, hosted on Cloudflare Pages. No build step: every pus
 | Path | File |
 |---|---|
 | `/` | `index.html` (studio home, clean look, `styles.css`) |
-| `/goldcraft/` | `goldcraft/index.html` (addon look, `goldcraft/goldcraft.css`) |
+| `/goldcraft/` | `goldcraft/index.html` (addon look, `goldcraft/goldcraft.css`); the interactive tour is `goldcraft/demo.js` + `demo.css` with sample data, using the addon's own art in `goldcraft/art/` |
 | `/privacy/` | `privacy/index.html` |
 | anything else | `404.html` |
 

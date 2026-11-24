@@ -12,24 +12,49 @@
 <meta property="og:url" content="https://spawnframe.dev/goldcraft/">
 <meta property="og:type" content="website">
 <link rel="stylesheet" href="/goldcraft/goldcraft.css">
+<link rel="stylesheet" href="/goldcraft/demo.css">
 </head>
 <body>
 <header class="top"><div class="wrap">
   <a href="/">← SpawnFrame</a>
-  <nav><a href="#features">Features</a><a href="#start">Getting started</a><a href="https://www.curseforge.com/wow/addons/goldcraftforever">CurseForge</a></nav>
+  <nav><a href="#tour">Take the tour</a><a href="#features">Features</a><a href="#start">Getting started</a><a href="https://www.curseforge.com/wow/addons/goldcraftforever">CurseForge</a></nav>
 </div></header>
 
 <main class="wrap">
   <section class="hero">
-    <div class="crest" aria-hidden="true">G</div>
+    <img class="crest-img" src="/goldcraft/art/emblem_home.webp" alt="" width="84" height="84">
     <h1>GoldCraftForever</h1>
     <p class="lede">Not just what things cost: what actually sells, where, and what to do about it today.</p>
     <p class="sub">A free economy addon for WoW Forever. It measures how many of each item sell every day at all three auction houses, and turns that into a plan: what to buy, what to craft, and where to post it.</p>
     <div class="cta">
       <a class="btn gold" href="https://www.curseforge.com/wow/addons/goldcraftforever">Download on CurseForge</a>
-      <a class="btn" href="#features">See what it does</a>
+      <a class="btn" href="#tour">Take the tour</a>
     </div>
     <div class="facts"><span>free</span><span>no other addons needed</span><span>6 languages</span><span>2,400+ recipes built in</span></div>
+  </section>
+
+  <section id="tour" class="demo">
+    <h2>Take the tour</h2>
+    <p class="intro">This is the addon's window with sample data. Follow the steps, or click around: the tabs, the items in Market and the recipes in Professions all work.</p>
+    <div class="demo-stage" id="demo-stage"><div class="demo-scaler" id="demo-scaler">
+      <div class="gcf-win" id="gcf-win" aria-label="GoldCraftForever window with sample data">
+        <div class="gcf-head">
+          <img src="/goldcraft/art/emblem_home.webp" alt="">
+          <div><div class="gcf-title">GoldCraftForever<small>v0.26.2</small></div><div class="gcf-sub">Server 20:14 · new day in 3 h 46 min · Kaelthar, Alliance</div></div>
+          <span class="sp"></span>
+          <span class="gcf-btn red">Export for AI</span><span class="gcf-btn sq">!</span><span class="gcf-btn sq">⚙</span><span class="gcf-btn sq">?</span><span class="gcf-btn sq">✕</span>
+        </div>
+        <div class="gcf-tabs" id="gcf-tabs"></div>
+        <div class="gcf-body"><div class="gcf-side" id="gcf-side"></div><div class="gcf-main" id="gcf-main"></div></div>
+        <div class="gcf-foot"><span>Scanned <b>Alliance</b> 12 min ago · <b>Horde</b> 3 h · <b>Neutral</b> 1 h</span><span class="sp"></span><span>Gold on all characters <b>67g 05s</b></span><span class="gcf-btn">Scan AH</span></div>
+      </div>
+    </div></div>
+    <div class="tour" aria-live="polite">
+      <div><div class="step" id="tour-step"></div><h3 id="tour-title"></h3><p id="tour-text"></p><p class="best" id="tour-best"></p></div>
+      <div class="nav"><button class="btn" id="tour-prev" type="button">Back</button><button class="btn gold" id="tour-next" type="button">Next</button></div>
+      <div class="dots" id="tour-dots"></div>
+    </div>
+    <p class="demo-note">sample data · prices and names are made up for the tour<span class="small-only"> · best on a bigger screen</span></p>
   </section>
 
   <div class="houses" aria-label="The three auction houses">
@@ -106,5 +131,6 @@
   <span>GoldCraftForever by SpawnFrame · Not affiliated with Blizzard Entertainment.</span>
   <nav><a href="/">SpawnFrame</a><a href="/privacy/">Privacy</a><a href="mailto:hello@spawnframe.dev">hello@spawnframe.dev</a></nav>
 </div></footer>
+<script src="/goldcraft/demo.js" defer></script>
 </body>
 </html>
