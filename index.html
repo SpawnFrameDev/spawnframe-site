@@ -3,62 +3,87 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SpawnFrame: tools for game economies</title>
-<meta name="description" content="SpawnFrame makes free, honest tools for players who like their numbers: addons and apps for World of Warcraft economies.">
+<title>SpawnFrame: where ideas take shape</title>
+<meta name="description" content="SpawnFrame is an independent software studio: game addons and companion apps, web apps, data tools and automation. Measured, honest, built to last.">
+<meta name="theme-color" content="#060A12">
 <link rel="canonical" href="https://spawnframe.dev/">
-<link rel="icon" href="/favicon.svg?v=9aa09fda" type="image/svg+xml">
-<meta property="og:title" content="SpawnFrame: tools for game economies">
-<meta property="og:description" content="SpawnFrame makes free, honest tools for players who like their numbers: addons and apps for World of Warcraft economies.">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/brand/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/brand/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta property="og:title" content="SpawnFrame: where ideas take shape">
+<meta property="og:description" content="SpawnFrame is an independent software studio: game addons and companion apps, web apps, data tools and automation. Measured, honest, built to last.">
 <meta property="og:url" content="https://spawnframe.dev/">
+<meta property="og:image" content="https://spawnframe.dev/brand/icon-512.png">
 <meta property="og:type" content="website">
-<link rel="stylesheet" href="/styles.css?v=924ce8e7">
+<link rel="preload" href="/fonts/space-grotesk-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles.css?v=58b68663">
 </head>
 <body>
 <header class="top"><div class="wrap">
-  <a class="brand" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M8 13V8h5M19 8h5v5M24 19v5h-5M13 24H8v-5" fill="none" stroke="var(--bg)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16" cy="16" r="3.2" fill="var(--accent)"/></svg>SpawnFrame</a>
-  <nav class="nav"><a href="/goldcraft/">GoldCraftForever</a><a href="https://github.com/SpawnFrameDev">GitHub</a><a href="mailto:hello@spawnframe.dev">Contact</a></nav>
+  <a class="brand" href="/" aria-label="SpawnFrame home"><img src="/brand/mark-96.png" alt="" width="32" height="32"><span>SpawnFrame</span></a>
+  <nav class="nav"><a href="/#projects">Projects</a><a class="hide-sm" href="/#build">What we build</a><a class="hide-xs" href="https://github.com/SpawnFrameDev">GitHub</a><a href="mailto:hello@spawnframe.dev">Contact</a></nav>
 </div></header>
 <main>
-<div class="wrap">
-  <section class="hero">
-    <div class="eyebrow">spawnframe.dev</div>
-    <h1>Tools for players who like their numbers.</h1>
-    <p>SpawnFrame makes free addons and apps for game economies. Measured data, honest advice, and nothing that gets in the way of playing.</p>
-  </section>
+  <div class="hero"><div class="wrap">
+    <div>
+      <p class="eyebrow">Independent software studio</p>
+      <h1>Where ideas take shape.</h1>
+      <p>SpawnFrame builds tools people actually use: game addons and their companion apps, web apps, data pipelines, dashboards and automation. Measured, honest, and built to last.</p>
+      <div class="cta"><a class="btn primary" href="#projects">See the projects</a><a class="btn" href="mailto:hello@spawnframe.dev">Get in touch</a></div>
+    </div>
+    <div class="art"><img src="/brand/mark-256.png" alt="The SpawnFrame mark: an interlocked S and F with cyan pixels assembling at the top right" width="256" height="256"></div>
+  </div></div>
 
-  <section>
-    <h2>// projects</h2>
+  <section id="projects"><div class="wrap">
+    <p class="eyebrow">Projects</p>
+    <h2>What's live, and what's next</h2>
+    <p class="lead">Free tools for the WoW Forever economy, built from real data and played every day.</p>
     <div class="grid">
       <article class="card">
-        <span class="tag">live on CurseForge</span>
+        <span class="badge">Live</span>
         <h3>GoldCraftForever</h3>
         <p>An economy addon for WoW Forever: what actually sells at all three auction houses, what's worth crafting, and a plan for your day.</p>
-        <div class="links">
-          <a class="btn primary" href="/goldcraft/">Learn more</a>
-          <a class="btn" href="https://www.curseforge.com/wow/addons/goldcraftforever">Download</a>
-        </div>
+        <span class="meta">v0.26.3 · free · 6 languages</span>
+        <div class="links"><a class="btn primary sm" href="/goldcraft/">Take the tour</a><a class="btn sm" href="https://www.curseforge.com/wow/addons/goldcraftforever">Download on CurseForge</a></div>
       </article>
       <article class="card">
-        <span class="tag soon">in progress</span>
+        <span class="badge muted">In planning</span>
         <h3>GoldCraftForever Companion</h3>
         <p>Your prices, sales and gold over months, not days. A web app you can use anywhere, plus an optional desktop app that imports when you log out.</p>
+        <span class="meta">web app · desktop app · free</span>
+        <div class="links"><a class="btn sm" href="/goldcraft/#coming">What's planned</a></div>
       </article>
     </div>
-  </section>
+  </div></section>
 
-  <section>
-    <h2>// how we build</h2>
-    <div class="principles">
-      <div><h3>Measured, not guessed</h3><p>Numbers come from real scans and your own play. When there isn't enough data, the tool says so.</p></div>
-      <div><h3>Free, always</h3><p>Everything tied to the game is free, as Blizzard's add-on policy requires. No paywalls, no premium tier.</p></div>
-      <div><h3>Your data stays yours</h3><p>Only auction house prices are ever shared. Your bags, gold and characters are never sent anywhere without you choosing it.</p></div>
+  <section id="build"><div class="wrap">
+    <p class="eyebrow">What we build</p>
+    <h2>Small tools, solid structure</h2>
+    <p class="lead">Software that does one job well, from a game addon to a desktop app that runs a warehouse floor.</p>
+    <div class="cols">
+      <div><span class="num">01</span><h3>Game addons and companions</h3><p>In-game tools and the apps that extend them beyond the game.</p></div>
+      <div><span class="num">02</span><h3>Web apps</h3><p>Fast, installable apps that work on any device.</p></div>
+      <div><span class="num">03</span><h3>Data and dashboards</h3><p>Pipelines, databases and dashboards that turn raw data into decisions.</p></div>
+      <div><span class="num">04</span><h3>Automation and desktop tools</h3><p>Desktop apps and workflows that replace spreadsheets and repetitive work.</p></div>
     </div>
-  </section>
-</div>
+  </div></section>
+
+  <section><div class="wrap">
+    <p class="eyebrow">How we build</p>
+    <h2>Principles</h2>
+    <p class="lead">The same rules for every project.</p>
+    <div class="principles">
+      <div><h3>Measured, not guessed</h3><p>Numbers come from real data. When there isn't enough yet, the tool says so instead of making something up.</p></div>
+      <div><h3>Free where it should be</h3><p>Everything tied to a game is free, as the game's add-on rules require. No paywalls, no premium tier.</p></div>
+      <div><h3>Your data stays yours</h3><p>Nothing personal leaves your computer unless you choose to sync it, and you can delete it any time.</p></div>
+    </div>
+  </div></section>
 </main>
 <footer class="foot"><div class="wrap">
-  <span>© 2026 SpawnFrame. Not affiliated with Blizzard Entertainment.</span>
-  <nav><a href="/privacy/">Privacy</a><a href="https://github.com/SpawnFrameDev">GitHub</a><a href="mailto:hello@spawnframe.dev">hello@spawnframe.dev</a></nav>
+  <div><a class="brand" href="/"><img src="/brand/mark-96.png" alt="" width="28" height="28"><span>SpawnFrame</span></a><span class="tag">Where ideas take shape</span></div>
+  <nav><a href="/goldcraft/">GoldCraftForever</a><a href="/privacy/">Privacy</a><a href="https://github.com/SpawnFrameDev">GitHub</a><a href="mailto:hello@spawnframe.dev">hello@spawnframe.dev</a></nav>
+  <div class="legal">© 2026 SpawnFrame. GoldCraftForever is not affiliated with or endorsed by Blizzard Entertainment.</div>
 </div></footer>
 </body>
 </html>
