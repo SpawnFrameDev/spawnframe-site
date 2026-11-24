@@ -11,7 +11,7 @@ Static site for SpawnFrame, hosted on Cloudflare Pages. No build step: every pus
 
 `_headers` sets security headers on Cloudflare Pages. No outside fonts, scripts or trackers, which the privacy page promises: Space Grotesk, Plus Jakarta Sans and JetBrains Mono (all SIL OFL) are self-hosted in `fonts/`.
 
-Brand: `brand/mark.png` is the SF interlock cut out of its background; `mark-96.png` and `mark-256.png` for the header and hero; `icon-*.png`, `apple-touch-icon.png` and `/favicon.ico` on Midnight Navy. Still to do from the brand spec: hand-drawn SVGs (full mark, simplified 16 px micro mark, horizontal and stacked lockups).
+Brand (`brand/`): `logo-mark.svg` is the SF interlock traced from the master PNG (silver gradient + cyan pixels), with `logo-mark-flat.svg` (flat #C5D1E0) and single-colour `logo-mark-mono-light.svg` / `-mono-dark.svg` (pixels at 45%, per the spec). `app-icon.svg` is the mark on Midnight Navy; `icon-*.png`, `apple-touch-icon.png`, `/favicon.svg` and `/favicon.ico` are made from it. `mark.png` is the cut-out raster master. Still to do from the spec: a simplified 16 px micro mark, and horizontal/stacked lockup SVGs.
 
 ## Cloudflare Pages settings
 - Framework preset: None
