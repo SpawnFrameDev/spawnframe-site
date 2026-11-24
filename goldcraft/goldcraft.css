@@ -81,3 +81,4 @@ section { padding: 24px 0 64px; }
 .foot a { color: var(--muted); text-decoration: none; } .foot a:hover { color: var(--gold-bright); }
 .foot nav { display: flex; gap: 20px; }
 @media (max-width: 640px) { .top nav a:not(:last-child) { display: none; } .houses { grid-template-columns: 1fr; } .hero { padding: 56px 0 40px; } }
+.feature .soon { display: inline-block; margin-bottom: 8px; font: 11px/1 var(--mono); letter-spacing: 0.04em; padding: 4px 7px; border-radius: 3px; color: #2b1b08; background: linear-gradient(#f4d683, #c9973a); }

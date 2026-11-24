@@ -184,12 +184,12 @@
     h += at(cw + 12, 152, "Week's best", "color:var(--gold)");
     var best = [["Your top seller (material):", " Swiftness Potion " + M(40502) + ' <span class="d">(87 sold)</span>'],
       ["Your top seller (crafted):", " Cerulean Dye " + M(205136) + ' <span class="d">(34 sold)</span>'],
-      ["Account worth:", " 86.4g " + '<span class="d">(gold 67.1g, items 19.3g)</span> <span class=gr>+12.8g</span> <span class=d>this week</span>'],
-      ["Spent outside the market:", " 6.7g " + '<span class="d">this week (training 4.6g, flights 1g, repairs 54s)</span>'],
-      ["Your strongest market:", ' Cloth <span class="d">(100% of your auctions sold, 30 days)</span>'],
-      ["Fastest seller you can make:", ' Crafted Light Shot <span class="d">(about 22163 a day at Alliance)</span>'],
+      ["Account worth:", " 86.4g " + '<span class="d">(gold 67.1g, items 19.3g)</span> <span class=gr>+12.8g</span>'],
+      ["Spent outside the market:", " 6.7g " + '<span class="d">(training 4.6g, flights 1g)</span>'],
+      ["Your strongest market:", ' Cloth <span class="d">(100% sold, 30 days)</span>'],
+      ["Fastest seller you can make:", ' Crafted Light Shot <span class="d">(22163 a day)</span>'],
       ["Best recipe right now:", " Elixir of Minor Agility 22.9g/h"],
-      ["Biggest staple move:", ' Blue Dragonscale <span class=rd>-68%</span> <span class="d">this week vs its 30 days (Alliance)</span>']];
+      ["Biggest staple move:", ' Blue Dragonscale <span class=rd>-68%</span> <span class="d">vs its 30 days</span>']];
     h += '<div id="home-best">';
     best.forEach(function (b, i) { h += at(cw + 12, 168 + 2 + i * 20, '<span class="g">' + b[0] + "</span>" + b[1], "font-size:10.5px;width:" + (W - cw - 14) + "px;white-space:nowrap;overflow:hidden"); });
     h += "</div>";
@@ -576,13 +576,32 @@
       best: "Ready? Install it from CurseForge, type /gcf, and open an auction house." }
   ];
   var step = 0;
+  // the highlight is a frame of its own over the window, around everything in the group: many groups
+  // are wrappers whose pieces are positioned one by one, so the wrapper itself has no size
+  function frameAround(el) {
+    var box = $("#tour-box"), scaler = $("#demo-scaler"), win = $("#gcf-win");
+    if (!el) { box.style.display = "none"; return; }
+    var k = scaler.getBoundingClientRect().width / 1120 || 1, base = scaler.getBoundingClientRect();
+    var r = { l: Infinity, t: Infinity, r: -Infinity, b: -Infinity };
+    [el].concat(Array.prototype.slice.call(el.querySelectorAll("*"))).forEach(function (n) {
+      var b = n.getBoundingClientRect();
+      if (b.width === 0 || b.height === 0) return;
+      r.l = Math.min(r.l, b.left); r.t = Math.min(r.t, b.top); r.r = Math.max(r.r, b.right); r.b = Math.max(r.b, b.bottom);
+    });
+    if (r.l === Infinity) { box.style.display = "none"; return; }
+    // keep it inside the window (or the separate window it belongs to), with a little air
+    var w = (el.closest(".fw, .tipw") || win).getBoundingClientRect(), pad = 4 * k;
+    var L = Math.max(r.l - pad, w.left + 2 * k), T = Math.max(r.t - pad, w.top + 2 * k), R = Math.min(r.r + pad, w.right - 2 * k), B = Math.min(r.b + pad, w.bottom - 2 * k);
+    box.style.display = "block";
+    box.style.left = (L - base.left) / k + "px"; box.style.top = (T - base.top) / k + "px";
+    box.style.width = (R - L) / k + "px"; box.style.height = (B - T) / k + "px";
+  }
   function highlight() {
-    document.querySelectorAll(".tour-hi").forEach(function (e) { e.classList.remove("tour-hi"); });
     var s = STEPS[step];
     $("#aucw").classList.toggle("show", !!(s && s.win === "aucw" && st.page === s.page));
     $("#bagw").classList.toggle("show", !!(s && s.win === "bagw" && st.page === s.page));
     $("#tipw").classList.toggle("show", !!(s && s.tip && st.page === s.page));
-    if (s && s.el && s.page === st.page) { var e = $(s.el); if (e) e.classList.add("tour-hi"); }
+    frameAround(s && s.el && s.page === st.page ? $(s.el) : null);
   }
   function go(i) {
     step = Math.max(0, Math.min(STEPS.length - 1, i));
@@ -628,7 +647,7 @@
     $("#demo-scaler").style.transform = "scale(" + k + ")";
     stage.style.height = 760 * k + "px";
   }
-  window.addEventListener("resize", fit);
+  window.addEventListener("resize", function () { fit(); highlight(); });
   fit();
   go(0);
 })();
