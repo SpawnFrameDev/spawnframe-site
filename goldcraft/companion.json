@@ -1,11 +1,11 @@
 {
-  "version": "0.3.3",
-  "url": "https://spawnframe.dev/goldcraft/download/GoldCraftCompanion-0.3.3.zip",
-  "sha256": "649de4a3294a7cc597590cf4532ceba19f6729e4b9c6bc43681e062c73ac3a19",
-  "bytes": 18547426,
+  "version": "0.3.4",
+  "url": "https://spawnframe.dev/goldcraft/download/GoldCraftCompanion-0.3.4.zip",
+  "sha256": "2dea7d4d35101c3216d213c6b656dcd578e145bdd62fc464f0f24b81bdd9351b",
+  "bytes": 18547906,
   "released": "2026-11-25",
   "min_version": "0.0.0",
   "notes": [
-    "Fix: syncs no longer re-download every shared price when nothing has changed"
+    "Fix: after clicking Update, the Companion restarts cleanly (no \"Failed to remove temporary directory\" warning or blank page)"
   ]
 }
