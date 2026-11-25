@@ -128,3 +128,5 @@ section { padding: 72px 0; border-top: 1px solid var(--sf-border); }
   .top .brand span { font-size: 15px; }
   section { padding: 56px 0; }
 }
+
+.support .cta { margin-top: 20px; }
