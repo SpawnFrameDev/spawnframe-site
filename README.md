@@ -6,6 +6,7 @@ Static site for SpawnFrame, hosted on Cloudflare Pages. No build step: every pus
 |---|---|
 | `/` | `index.html` (studio home, SpawnFrame brand: `styles.css` with the brand spec's tokens, fonts in `fonts/`, logo and icons in `brand/`) |
 | `/goldcraft/` | `goldcraft/index.html` (addon look, `goldcraft/goldcraft.css`); the tour is `goldcraft/demo.js` + `demo.css`: the addon window rebuilt from its own code and art (`goldcraft/art/`), with sample data. Stand-ins: icons from game-icons.net (CC BY 3.0, sprite in `goldcraft/icons.svg`), Marcellus font (OFL, `goldcraft/fonts/`) |
+| `/foreverchat/` | `foreverchat/index.html` (SpawnFrame look, `foreverchat/foreverchat.css`); the chat demo is `foreverchat/demo.js` with sample lines |
 | `/privacy/` | `privacy/index.html` |
 | anything else | `404.html` |
 

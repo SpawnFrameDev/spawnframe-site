@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ForeverChat: sorted chat tabs for WoW Forever · SpawnFrame</title>
+<meta name="description" content="ForeverChat sorts your WoW Forever chat into Group, Guild, Friends, Loot, Professions and System tabs, using the game's own chat tabs. Free, lightweight, 6 languages.">
+<meta name="theme-color" content="#060A12">
+<link rel="canonical" href="https://spawnframe.dev/foreverchat/">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg?v=c705b3b3" type="image/svg+xml">
+<link rel="icon" href="/brand/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/brand/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta property="og:title" content="ForeverChat: sorted chat tabs for WoW Forever">
+<meta property="og:description" content="Loot, crafting, party, guild, friends and system messages each get their own tab. Free, lightweight, 6 languages.">
+<meta property="og:url" content="https://spawnframe.dev/foreverchat/">
+<meta property="og:image" content="https://spawnframe.dev/brand/icon-512.png">
+<meta property="og:type" content="website">
+<link rel="preload" href="/fonts/space-grotesk-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles.css?v=2021d4a5">
+<link rel="stylesheet" href="/foreverchat/foreverchat.css?v=cd77fbb0">
+<script src="/foreverchat/demo.js?v=146659ae" defer></script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/" aria-label="SpawnFrame home"><img src="/brand/logo-mark.svg?v=846f8ce9" alt="" width="32" height="32"><span>SpawnFrame</span></a>
+  <nav class="nav"><a href="/#projects">Projects</a><a class="hide-sm" href="#tabs">The tabs</a><a class="hide-xs" href="https://github.com/SpawnFrameDev">GitHub</a><a href="mailto:hello@spawnframe.dev">Contact</a></nav>
+</div></header>
+<main>
+  <div class="hero"><div class="wrap">
+    <div>
+      <p class="eyebrow">WoW Forever addon · free</p>
+      <h1>ForeverChat</h1>
+      <p>Sorted chat tabs for WoW Forever. Loot, crafting, group, guild, friends and system messages each get their own tab, and General goes back to being a conversation.</p>
+      <div class="cta"><a class="btn primary" href="https://www.curseforge.com/projects/1811600">Get it on CurseForge</a><a class="btn" href="#demo">Try the demo</a></div>
+      <p class="meta fc-meta">v0.5.0 · free · 6 languages · no setup</p>
+    </div>
+    <div id="demo" class="fc-demo" aria-label="ForeverChat demo: click a tab">
+      <div class="fc-tabs" role="tablist"></div>
+      <div class="fc-lines" role="tabpanel" aria-live="polite"></div>
+      <div class="fc-input"><span class="fc-say"></span><span class="fc-caret"></span></div>
+      <p class="fc-hint">Click a tab. The box at the bottom shows where you'd talk.</p>
+    </div>
+  </div></div>
+
+  <section id="tabs"><div class="wrap">
+    <p class="eyebrow">The tabs</p>
+    <h2>Every message in its place</h2>
+    <p class="lead">Six tabs after General and Combat Log. Each one can be turned off, and its messages go back to General like normal.</p>
+    <div class="cols">
+      <div><span class="num">GROUP</span><h3>Party, raid and instance</h3><p>You're only ever in one group at a time, so they share a tab.</p></div>
+      <div><span class="num">GUILD</span><h3>Guild and officer chat</h3><p>Your guild's conversation, without the trade spam in between.</p></div>
+      <div><span class="num">FRIENDS</span><h3>Whispers from friends</h3><p>Friends list and Battle.net friends. Whispers from strangers stay in General.</p></div>
+      <div><span class="num">LOOT</span><h3>Drops and gold</h3><p>Mob and chest drops, looted gold, auction house sales, and gold in and out at vendors, the mailbox and the auction house.</p></div>
+      <div><span class="num">PROFESSIONS</span><h3>Crafting and gathering</h3><p>Your crafts, skill-ups, fishing, mining and herbalism. Other players' "creates…" spam goes here too, or nowhere if you'd rather.</p></div>
+      <div><span class="num">SYSTEM</span><h3>Game and server messages</h3><p>Achievements, XP, reputation, errors, friends coming online, and text other addons print.</p></div>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <p class="eyebrow">How it works</p>
+    <h2>Light, and out of the way</h2>
+    <p class="lead">The same rules as everything SpawnFrame makes.</p>
+    <div class="principles">
+      <div><h3>Your chat, just tidier</h3><p>These are the game's own chat tabs, so fonts, colors, timestamps, search, copy and other chat or UI addons keep working.</p></div>
+      <div><h3>Click a tab, talk there</h3><p>Click Group and press Enter to talk to your group, Guild for your guild, Friends to whisper the last friend you talked to. Typing /p or /g still works as normal.</p></div>
+      <div><h3>Nothing running in the background</h3><p>Messages are sorted by type as they arrive. No timers, no scanning, nothing sent anywhere.</p></div>
+      <div><h3>In your language</h3><p>English, German, French, Spanish, Portuguese (Brazil) and Russian. Sorting uses the game's own text, so it works in every client language.</p></div>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <p class="eyebrow">Get started</p>
+    <h2>Install and log in</h2>
+    <p class="lead">The tabs appear the first time you log in. Turn them on or off in Options › AddOns › ForeverChat, or type <code>/fchat</code>.</p>
+    <div class="cta"><a class="btn primary" href="https://www.curseforge.com/projects/1811600">Get it on CurseForge</a><a class="btn" href="/goldcraft/">Also from SpawnFrame: GoldCraftForever</a></div>
+  </div></section>
+</main>
+<footer class="foot"><div class="wrap">
+  <div><a class="brand" href="/"><img src="/brand/logo-mark.svg?v=846f8ce9" alt="" width="28" height="28"><span>SpawnFrame</span></a><span class="tag">Where ideas take shape</span></div>
+  <nav><a href="/goldcraft/">GoldCraftForever</a><a href="/foreverchat/">ForeverChat</a><a href="/privacy/">Privacy</a><a href="/#support">Support</a><a href="https://github.com/SpawnFrameDev">GitHub</a><a href="mailto:hello@spawnframe.dev">hello@spawnframe.dev</a></nav>
+  <div class="legal">© 2026 SpawnFrame. ForeverChat is not affiliated with or endorsed by Blizzard Entertainment.</div>
+</div></footer>
+</body>
+</html>
