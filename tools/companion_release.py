@@ -36,4 +36,17 @@ for pat, rep in [
         sys.exit(f"pattern not found on the page: {pat}")
     n += k
 page.write_text(s, encoding="utf-8")
+
+# the Companion card on the home page
+home = SITE / "index.html"
+h = home.read_text(encoding="utf-8")
+for pat, rep in [
+    (r"/goldcraft/download/GoldCraftCompanion-[\d.]+\.zip", f"/goldcraft/download/{name}"),
+    (r'<span class="meta">v[\d.]+ · Windows · free</span>', f'<span class="meta">v{version} · Windows · free</span>'),
+]:
+    h, k = re.subn(pat, rep, h)
+    if not k:
+        sys.exit(f"pattern not found on the home page: {pat}")
+    n += k
+home.write_text(h, encoding="utf-8")
 print(f"{name}: {mb}, sha256 {sha[:16]}..., {n} page edits")
