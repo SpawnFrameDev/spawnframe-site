@@ -1,11 +1,13 @@
 {
-  "version": "0.3.4",
-  "url": "https://spawnframe.dev/goldcraft/download/GoldCraftCompanion-0.3.4.zip",
-  "sha256": "2dea7d4d35101c3216d213c6b656dcd578e145bdd62fc464f0f24b81bdd9351b",
-  "bytes": 18547906,
+  "version": "0.4.0",
+  "url": "https://spawnframe.dev/goldcraft/download/GoldCraftCompanion-0.4.0.zip",
+  "sha256": "990d5481f1bf8f79f30a23c3775bfcf48b4a316a715c838a8235001b107092ed",
+  "bytes": 18552707,
   "released": "2026-11-25",
   "min_version": "0.0.0",
   "notes": [
-    "Fix: after clicking Update, the Companion restarts cleanly (no \"Failed to remove temporary directory\" warning or blank page)"
+    "Share and get prices without signing in: the Companion uses a random ID kept on your computer (no email)",
+    "See how many players share prices at each auction house, and how fresh they are",
+    "Email sign-in is now only needed for the optional personal backup"
   ]
 }
