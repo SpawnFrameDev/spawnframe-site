@@ -1,11 +1,13 @@
 """Put a new GoldCraft Companion build on the website (run by the companion repo's release workflow).
 
-    python tools/companion_release.py 0.2.1 path/to/GoldCraftCompanion-0.2.1.zip
+    python tools/companion_release.py 0.2.1 path/to/GoldCraftCompanion-0.2.1.zip [whats-new.txt]
 
 Copies the zip to goldcraft/download/ (removing older builds; git history keeps them), and updates
-the GoldCraft page's download link, version, size and SHA-256. Then run tools/stamp.py.
+the GoldCraft page's download link, version, size and SHA-256, and goldcraft/companion.json, which
+the Companion reads to offer updates (min_version there is kept: raise it by hand when old versions
+must stop syncing). Then run tools/stamp.py.
 """
-import hashlib, re, shutil, sys
+import hashlib, json, re, shutil, sys, time
 from pathlib import Path
 
 SITE = Path(__file__).resolve().parent.parent
@@ -49,4 +51,23 @@ for pat, rep in [
         sys.exit(f"pattern not found on the home page: {pat}")
     n += k
 home.write_text(h, encoding="utf-8")
+# what the Companion checks for updates
+info_path = SITE / "goldcraft" / "companion.json"
+try:
+    old = json.loads(info_path.read_text(encoding="utf-8"))
+except (OSError, ValueError):
+    old = {}
+notes = []
+if len(sys.argv) > 3 and Path(sys.argv[3]).is_file():
+    notes = [l.strip().lstrip("-* ").strip() for l in Path(sys.argv[3]).read_text(encoding="utf-8").splitlines() if l.strip()]
+info = {
+    "version": version,
+    "url": f"https://spawnframe.dev/goldcraft/download/{name}",
+    "sha256": sha,
+    "bytes": len(data),
+    "released": old.get("released") if old.get("version") == version else time.strftime("%Y-%m-%d"),
+    "min_version": old.get("min_version", "0.0.0"),
+    "notes": notes or (old.get("notes", []) if old.get("version") == version else []),
+}
+info_path.write_text(json.dumps(info, indent=2) + "\n", encoding="utf-8")
 print(f"{name}: {mb}, sha256 {sha[:16]}..., {n} page edits")
