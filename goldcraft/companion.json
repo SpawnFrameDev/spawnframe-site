@@ -1,12 +1,11 @@
 {
-  "version": "0.3.2",
-  "url": "https://spawnframe.dev/goldcraft/download/GoldCraftCompanion-0.3.2.zip",
-  "sha256": "0faefbe48506662984ce634d0777635f36240809fe6619a98c18abd65948f825",
-  "bytes": 18548563,
+  "version": "0.3.3",
+  "url": "https://spawnframe.dev/goldcraft/download/GoldCraftCompanion-0.3.3.zip",
+  "sha256": "649de4a3294a7cc597590cf4532ceba19f6729e4b9c6bc43681e062c73ac3a19",
+  "bytes": 18547426,
   "released": "2026-11-25",
   "min_version": "0.0.0",
   "notes": [
-    "Tells you when a new Companion is out, and updates in one click (Status page: check for updates, install automatically)",
-    "Downloads only the prices that changed since your last sync"
+    "Fix: syncs no longer re-download every shared price when nothing has changed"
   ]
 }
