@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Getting started · GoldCraftForever · SpawnFrame</title>
+<meta name="description" content="Install GoldCraftForever and the GoldCraft Companion, get past the Windows warning, choose what to share, and report a problem.">
+<meta name="theme-color" content="#060A12">
+<link rel="canonical" href="https://spawnframe.dev/goldcraft/start/">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg?v=c705b3b3" type="image/svg+xml">
+<link rel="icon" href="/brand/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/brand/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta property="og:title" content="Getting started · GoldCraftForever">
+<meta property="og:description" content="Install GoldCraftForever and the GoldCraft Companion, get past the Windows warning, choose what to share, and report a problem.">
+<meta property="og:url" content="https://spawnframe.dev/goldcraft/start/">
+<meta property="og:image" content="https://spawnframe.dev/brand/icon-512.png">
+<meta property="og:type" content="website">
+<link rel="preload" href="/fonts/space-grotesk-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles.css?v=2021d4a5">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/" aria-label="SpawnFrame home"><img src="/brand/logo-mark.svg?v=846f8ce9" alt="" width="32" height="32"><span>SpawnFrame</span></a>
+  <nav class="nav"><a href="/#projects">Projects</a><a class="hide-sm" href="/#build">What we build</a><a class="hide-xs" href="https://github.com/SpawnFrameDev">GitHub</a><a href="mailto:hello@spawnframe.dev">Contact</a></nav>
+</div></header>
+<main class="wrap"><article class="prose">
+<h1>Getting started</h1>
+<p class="updated">GoldCraftForever and the GoldCraft Companion · updated 26 November 2026</p>
+<p>GoldCraftForever is a free WoW Forever addon that tells you what actually sells at each of the three auction houses, and what to craft, sell or hold today. The GoldCraft Companion is an optional, free Windows app that keeps months of your data and shares auction house prices with other players, so every house stays fresh. <b>You don't need an account for either.</b></p>
+
+<h2>1. the addon</h2>
+<ol>
+  <li><b>Install it</b> from <a href="https://www.curseforge.com/wow/addons/goldcraftforever">CurseForge</a> (the CurseForge app, or download and unzip into <code>World of Warcraft\_forever_\Interface\AddOns</code>), then log in.</li>
+  <li>Type <code>/gcf</code> or click the minimap button. A short tutorial shows you around.</li>
+  <li><b>Open an auction house.</b> It scans by itself, or click <i>Scan AH</i>. WoW Forever allows one full scan every 15 minutes for your whole account; GoldCraftForever counts down to the next one. Searching an item updates its price any time.</li>
+  <li><b>Open each profession window once,</b> so it knows your recipes, and open your mailbox after sales, so the ledger records them.</li>
+</ol>
+
+<h2>2. the companion (optional)</h2>
+<ol>
+  <li><b>Download it</b> from the <a href="/goldcraft/#coming">GoldCraft page</a> and unzip it into a folder you'll keep, for example <code>Documents\GoldCraft Companion</code>. Run <code>GoldCraftCompanion.exe</code>.</li>
+  <li><b>The Windows warning.</b> The app is new and not code-signed yet, so Windows shows <i>"Windows protected your PC"</i>. Click <b>More info</b>, then <b>Run anyway</b>. Some antivirus programs also flag new one-file apps by mistake. You can check the download is ours: its SHA-256 is listed next to the download button.</li>
+  <li><b>It opens in your browser</b> (only your own computer can see it). It finds your WoW Forever folder in the usual install places and imports your GoldCraftForever data. If it can't find the folder, set it on its <i>Status</i> page.</li>
+  <li><b>Choose whether to share.</b> A note at the top asks first: <i>Sounds good</i> shares your auction house prices with other players (and gets theirs either way); <i>Don't share my prices</i> keeps yours on your PC. <b>Nothing is shared until you answer.</b></li>
+  <li><b>Restart the game once</b> so it finds the Companion's data addon (<i>GoldCraftForever_Data</i>). After that, its prices reach your game at every <code>/reload</code> or login.</li>
+  <li>It lives in the system tray. Right-click it for <i>Start with Windows</i>. New versions show a banner with what's new; nothing installs until you click <i>Update</i>.</li>
+</ol>
+
+<h2>what's shared, and how to stop</h2>
+<ul>
+  <li><b>Shared:</b> auction house prices, how many are listed, and sales estimates, per house. Never your characters, bags, gold, ledger or anything else about you.</li>
+  <li><b>No account:</b> the Companion uses a random ID kept on your PC. Signing in by email is only for an optional private backup of your own data.</li>
+  <li><b>Stop any time</b> on the Companion's <i>Online</i> page: untick <i>Share my auction house prices too</i>, or untick <i>Use shared prices</i> and nothing leaves your PC. <i>Delete my online data</i> removes everything linked to you.</li>
+  <li>The details are on the <a href="/privacy/">privacy page</a>.</li>
+</ul>
+
+<h2>report a problem</h2>
+<p>Email <a href="mailto:hello@spawnframe.dev?subject=GoldCraft%20problem">hello@spawnframe.dev</a> or leave a comment on <a href="https://www.curseforge.com/wow/addons/goldcraftforever">CurseForge</a>. These make it quick to fix:</p>
+<ol>
+  <li><b>What happened,</b> and what you expected instead.</li>
+  <li><b>GoldCraftForever's debug info:</b> Settings &rsaquo; Support &rsaquo; <i>Copy debug info</i>, then paste it. It includes the version, your client's language and recent errors.</li>
+  <li><b>For the Companion:</b> its version (Status page) and, if it's about syncing, the last lines of <code>%APPDATA%\GoldCraftCompanion\agent.log</code>.</li>
+  <li>A screenshot helps when it's about how something looks.</li>
+</ol>
+
+<h2>known issues</h2>
+<ul>
+  <li><b>The Windows warning</b> on the Companion appears until it's code-signed. See step 2 above.</li>
+  <li><b>The first time,</b> the game needs a full restart (not just <code>/reload</code>) to load the Companion's data addon.</li>
+  <li><b>Linux:</b> there's no Linux Companion yet. The addon works under Wine, Lutris and Proton.</li>
+  <li><b>Other addons at the auction house:</b> if another addon docks a panel at the auction house's right edge, GoldCraftForever's buttons move to a row under it (Settings &rsaquo; Selling).</li>
+</ul>
+</article></main>
+<footer class="foot"><div class="wrap">
+  <div><a class="brand" href="/"><img src="/brand/logo-mark.svg?v=846f8ce9" alt="" width="28" height="28"><span>SpawnFrame</span></a><span class="tag">Where ideas take shape</span></div>
+  <nav><a href="/goldcraft/">GoldCraftForever</a><a href="/foreverchat/">ForeverChat</a><a href="/privacy/">Privacy</a><a href="https://github.com/SpawnFrameDev">GitHub</a><a href="mailto:hello@spawnframe.dev">hello@spawnframe.dev</a></nav>
+  <div class="legal">© 2026 SpawnFrame. GoldCraftForever is not affiliated with or endorsed by Blizzard Entertainment.</div>
+</div></footer>
+</body>
+</html>
