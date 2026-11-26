@@ -1,12 +1,12 @@
 {
-  "version": "0.4.2",
-  "url": "https://spawnframe.dev/goldcraft/download/GoldCraftCompanion-0.4.2.zip",
-  "sha256": "effa2016a2b6543316a401b991aa4cbd3bdd3cb0d3764c0ca882c6a655ff8d7f",
-  "bytes": 18554159,
+  "version": "0.5.0",
+  "url": "https://spawnframe.dev/goldcraft/download/GoldCraftCompanion-0.5.0.zip",
+  "sha256": "6b9e639011e8704e9425cd8ba3ef704e5e5cd79868d3716ca3274fe5bbe78e25",
+  "bytes": 18555247,
   "released": "2026-11-26",
   "min_version": "0.0.0",
   "notes": [
-    "Fix: \"Write now\" (Status > Prices in the game) did nothing and stayed gray, and turning off \"Bring prices back into the game\" didn't save",
-    "Fix: one stuck button no longer grays out Import now and Check now"
+    "Searches count: prices from your auction house searches (GoldCraftForever 0.28.0+) are shared too when they're newer than your last full scan, so everyone's prices stay fresh between scans",
+    "Item pages say how many players' scans are behind a shared price today, and warn when only a few are listed"
   ]
 }
