@@ -1,13 +1,13 @@
 {
-  "version": "0.4.0",
-  "url": "https://spawnframe.dev/goldcraft/download/GoldCraftCompanion-0.4.0.zip",
-  "sha256": "990d5481f1bf8f79f30a23c3775bfcf48b4a316a715c838a8235001b107092ed",
-  "bytes": 18552707,
-  "released": "2026-11-25",
+  "version": "0.4.1",
+  "url": "https://spawnframe.dev/goldcraft/download/GoldCraftCompanion-0.4.1.zip",
+  "sha256": "a209c93319a6f5ec2481fc0c60d62e1b65788489b78c194246e15aea0e0ced25",
+  "bytes": 18555088,
+  "released": "2026-11-26",
   "min_version": "0.0.0",
   "notes": [
-    "Share and get prices without signing in: the Companion uses a random ID kept on your computer (no email)",
-    "See how many players share prices at each auction house, and how fresh they are",
-    "Email sign-in is now only needed for the optional personal backup"
+    "Nothing is shared until you answer the welcome note (Sounds good / Don't share my prices)",
+    "If sharing your prices fails, you still get everyone else's",
+    "Fix: a nameless 0/0 profession no longer shows on the Characters page"
   ]
 }
