@@ -1,13 +1,12 @@
 {
-  "version": "0.4.1",
-  "url": "https://spawnframe.dev/goldcraft/download/GoldCraftCompanion-0.4.1.zip",
-  "sha256": "a209c93319a6f5ec2481fc0c60d62e1b65788489b78c194246e15aea0e0ced25",
-  "bytes": 18555088,
+  "version": "0.4.2",
+  "url": "https://spawnframe.dev/goldcraft/download/GoldCraftCompanion-0.4.2.zip",
+  "sha256": "effa2016a2b6543316a401b991aa4cbd3bdd3cb0d3764c0ca882c6a655ff8d7f",
+  "bytes": 18554159,
   "released": "2026-11-26",
   "min_version": "0.0.0",
   "notes": [
-    "Nothing is shared until you answer the welcome note (Sounds good / Don't share my prices)",
-    "If sharing your prices fails, you still get everyone else's",
-    "Fix: a nameless 0/0 profession no longer shows on the Characters page"
+    "Fix: \"Write now\" (Status > Prices in the game) did nothing and stayed gray, and turning off \"Bring prices back into the game\" didn't save",
+    "Fix: one stuck button no longer grays out Import now and Check now"
   ]
 }
