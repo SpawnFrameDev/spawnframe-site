@@ -35,7 +35,11 @@ export async function onRequest(context) {
   const cache = caches.default;
   const key = new Request(url.origin + url.pathname + "?t=" + TEMPLATE + CSS_V);
   const hit = await cache.match(key);
-  if (hit) return hit;
+  if (hit) {
+    // the stored copy carries the server cache's 3 hours; browsers should always ask again
+    const h = new Headers(hit.headers); h.set("Cache-Control", "no-cache");
+    return new Response(hit.body, { status: hit.status, headers: h });
+  }
 
   let data = null;
   try { data = await load(); } catch (e) { data = null; }
