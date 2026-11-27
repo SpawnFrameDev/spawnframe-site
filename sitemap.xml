@@ -5,4 +5,14 @@
   <url><loc>https://spawnframe.dev/goldcraft/start/</loc><lastmod>2026-11-27</lastmod></url>
   <url><loc>https://spawnframe.dev/foreverchat/</loc><lastmod>2026-11-27</lastmod></url>
   <url><loc>https://spawnframe.dev/privacy/</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://spawnframe.dev/goldcraft/market/</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://spawnframe.dev/goldcraft/market/alchemy/</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://spawnframe.dev/goldcraft/market/blacksmithing/</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://spawnframe.dev/goldcraft/market/cooking/</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://spawnframe.dev/goldcraft/market/enchanting/</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://spawnframe.dev/goldcraft/market/engineering/</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://spawnframe.dev/goldcraft/market/first-aid/</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://spawnframe.dev/goldcraft/market/leatherworking/</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://spawnframe.dev/goldcraft/market/mining/</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://spawnframe.dev/goldcraft/market/tailoring/</loc><changefreq>daily</changefreq></url>
 </urlset>

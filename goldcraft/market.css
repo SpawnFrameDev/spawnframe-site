@@ -1,0 +1,34 @@
+/* Public market pages (/goldcraft/market/), on top of /styles.css */
+.prose.wide { max-width: 1040px; }
+.market .crumbs { font: 400 13px var(--sf-font-mono); color: var(--sf-text-pewter); margin: 0 0 12px; }
+.market .crumbs a { color: var(--sf-text-silver); text-decoration: none; }
+.market .lead { font-size: 18px; color: var(--sf-text-ice); }
+.market .stats { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 4px; font-size: 14px; }
+.market .dim { color: var(--sf-text-pewter); }
+.market h3 { font-size: 17px; margin: 28px 0 8px; color: var(--sf-text-ice); }
+.market h4 { font-size: 15px; margin: 8px 0 4px; color: var(--sf-text-ice); }
+.market section.house { margin-top: 48px; padding-top: 8px; border-top: 1px solid var(--sf-border); }
+.market .tbl { overflow-x: auto; border: 1px solid var(--sf-border); border-radius: 6px; }
+.market table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.market th, .market td { padding: 8px 12px; text-align: right; white-space: nowrap; border-bottom: 1px solid var(--sf-border); }
+.market th:first-child, .market td:first-child { text-align: left; white-space: normal; }
+.market td:nth-child(2) a { color: var(--sf-accent-cyan); }
+.market th { font: 500 12px var(--sf-font-mono); text-transform: uppercase; letter-spacing: 0.04em; color: var(--sf-text-pewter); background: var(--sf-bg-navy); }
+.market tr:last-child td { border-bottom: 0; }
+.market td { color: var(--sf-text-silver); }
+.market td.pos { color: #4cd137; }
+.market td.neg { color: #ff6b5b; }
+.market .g { color: #ffd100; font-size: 0.85em; margin-left: 1px; }
+.market .s { color: #c7c7cf; font-size: 0.85em; margin-left: 1px; }
+.market .c { color: #d8884a; font-size: 0.85em; margin-left: 1px; }
+.market .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.market .cols ul { padding-left: 18px; margin: 0; font-size: 14px; }
+@media (max-width: 700px) { .market .cols { grid-template-columns: 1fr; } }
+.market details.method { margin: 48px 0 0; padding: 14px 18px; border: 1px solid var(--sf-border); border-radius: 6px; background: var(--sf-bg-navy); }
+.market details.method summary { cursor: pointer; color: var(--sf-text-ice); font-weight: 600; }
+.market details.method p { font-size: 14px; }
+.market .cta { margin: 40px 0 0; padding: 20px 22px; border: 1px solid var(--sf-accent-cyan); border-radius: 6px; }
+.market .cta p { margin: 0 0 12px; }
+.market .cta p:last-child { margin: 0; display: flex; gap: 12px; flex-wrap: wrap; }
+.market .profs { margin: 32px 0 0; font-size: 14px; color: var(--sf-text-pewter); }
+.market .profs a { color: var(--sf-accent-cyan); }
