@@ -1,12 +1,12 @@
 {
-  "version": "0.5.0",
-  "url": "https://spawnframe.dev/goldcraft/download/GoldCraftCompanion-0.5.0.zip",
-  "sha256": "6b9e639011e8704e9425cd8ba3ef704e5e5cd79868d3716ca3274fe5bbe78e25",
-  "bytes": 18555247,
-  "released": "2026-11-26",
+  "version": "0.5.1",
+  "url": "https://spawnframe.dev/goldcraft/download/GoldCraftCompanion-0.5.1.zip",
+  "sha256": "ceb2ed408234f33c4fef86758ce07ae00f24431a732d93c275291d312e1436fb",
+  "bytes": 18555831,
+  "released": "2026-11-27",
   "min_version": "0.0.0",
   "notes": [
-    "Searches count: prices from your auction house searches (GoldCraftForever 0.28.0+) are shared too when they're newer than your last full scan, so everyone's prices stay fresh between scans",
-    "Item pages say how many players' scans are behind a shared price today, and warn when only a few are listed"
+    "Fix: vendor prices were stored the wrong way round, so item pages showed what a merchant charges as \"A vendor pays\". Shared item data is corrected too",
+    "Shares vendor sell prices GoldCraftForever 0.30.0 learns from your sales, for items the game reports no price for"
   ]
 }
