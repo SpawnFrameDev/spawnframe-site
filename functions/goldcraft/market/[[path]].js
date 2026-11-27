@@ -43,7 +43,7 @@ export async function onRequest(context) {
   const res = new Response(html, {
     headers: {
       "Content-Type": "text/html; charset=utf-8",
-      "Cache-Control": data ? "public, max-age=1800" : "no-store",
+      "Cache-Control": data ? "no-cache" : "no-store",
     },
   });
   if (data) {
