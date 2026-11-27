@@ -1,34 +1,57 @@
-/* Public market pages (/goldcraft/market/), on top of /styles.css */
-.prose.wide { max-width: 1040px; }
-.market .crumbs { font: 400 13px var(--sf-font-mono); color: var(--sf-text-pewter); margin: 0 0 12px; }
-.market .crumbs a { color: var(--sf-text-silver); text-decoration: none; }
-.market .lead { font-size: 18px; color: var(--sf-text-ice); }
-.market .stats { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 4px; font-size: 14px; }
-.market .dim { color: var(--sf-text-pewter); }
-.market h3 { font-size: 17px; margin: 28px 0 8px; color: var(--sf-text-ice); }
-.market h4 { font-size: 15px; margin: 8px 0 4px; color: var(--sf-text-ice); }
-.market section.house { margin-top: 48px; padding-top: 8px; border-top: 1px solid var(--sf-border); }
-.market .tbl { overflow-x: auto; border: 1px solid var(--sf-border); border-radius: 6px; }
-.market table { width: 100%; border-collapse: collapse; font-size: 14px; }
-.market th, .market td { padding: 8px 12px; text-align: right; white-space: nowrap; border-bottom: 1px solid var(--sf-border); }
+/* Public market pages (/goldcraft/market/), on top of /goldcraft/goldcraft.css: the GoldCraft look */
+.top .mk-brand { display: inline-flex; align-items: center; gap: 10px; font: 700 18px var(--serif); color: var(--gold-bright); }
+.top .mk-brand img { border-radius: 50%; }
+.market .mk-hero { padding: 56px 24px 36px; }
+.market .mk-hero h1 { font-size: clamp(34px, 5.5vw, 54px); }
+.market .crumbs { font: 13px var(--mono); color: var(--faint); margin: 0 0 10px; }
+.market .crumbs a { color: var(--muted); text-decoration: none; }
+.market .crumbs a:hover { color: var(--gold-bright); }
+.market .updated { font: 13px var(--mono); color: var(--faint); margin: 22px 0 0; }
+.market .mk-houses { max-width: 760px; margin: 26px auto 0; }
+.market .mk-houses .house span { font-size: 13px; line-height: 1.5; }
+.market .dim { color: var(--faint); }
+
+.market section { padding: 16px 0 40px; }
+.market .mk-house { border-top: 1px solid var(--rim); padding-top: 40px; }
+.market .mk-house h2 { color: var(--gold); }
+.market .mk-house.a h2 { color: var(--alliance); }
+.market .mk-house.h h2 { color: var(--horde); }
+.market .mk-house.n h2 { color: var(--neutral); }
+.market h3 { font: 700 20px var(--serif); color: var(--gold-bright); margin: 28px 0 10px; }
+.market h4 { font: 700 17px var(--serif); color: var(--gold); margin: 6px 0 6px; }
+
+.market .tbl { overflow-x: auto; border: 1px solid var(--rim); border-radius: 8px; background: linear-gradient(var(--panel-2), var(--panel)); box-shadow: inset 0 1px 0 rgba(246,217,138,0.08); }
+.market table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.market th, .market td { padding: 9px 14px; text-align: right; white-space: nowrap; border-bottom: 1px solid rgba(107,79,34,0.5); }
 .market th:first-child, .market td:first-child { text-align: left; white-space: normal; }
-.market td:nth-child(2) a { color: var(--sf-accent-cyan); }
-.market th { font: 500 12px var(--sf-font-mono); text-transform: uppercase; letter-spacing: 0.04em; color: var(--sf-text-pewter); background: var(--sf-bg-navy); }
+.market .mk-best td:nth-child(2), .market .mk-best th:nth-child(2) { text-align: left; white-space: normal; }
+.market th { font: 600 12px var(--mono); text-transform: uppercase; letter-spacing: 0.05em; color: var(--gold); background: rgba(0,0,0,0.28); }
 .market tr:last-child td { border-bottom: 0; }
-.market td { color: var(--sf-text-silver); }
-.market td.pos { color: #4cd137; }
-.market td.neg { color: #ff6b5b; }
-.market .g { color: #ffd100; font-size: 0.85em; margin-left: 1px; }
-.market .s { color: #c7c7cf; font-size: 0.85em; margin-left: 1px; }
-.market .c { color: #d8884a; font-size: 0.85em; margin-left: 1px; }
-.market .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-.market .cols ul { padding-left: 18px; margin: 0; font-size: 14px; }
-@media (max-width: 700px) { .market .cols { grid-template-columns: 1fr; } }
-.market details.method { margin: 48px 0 0; padding: 14px 18px; border: 1px solid var(--sf-border); border-radius: 6px; background: var(--sf-bg-navy); }
-.market details.method summary { cursor: pointer; color: var(--sf-text-ice); font-weight: 600; }
-.market details.method p { font-size: 14px; }
-.market .cta { margin: 40px 0 0; padding: 20px 22px; border: 1px solid var(--sf-accent-cyan); border-radius: 6px; }
-.market .cta p { margin: 0 0 12px; }
-.market .cta p:last-child { margin: 0; display: flex; gap: 12px; flex-wrap: wrap; }
-.market .profs { margin: 32px 0 0; font-size: 14px; color: var(--sf-text-pewter); }
-.market .profs a { color: var(--sf-accent-cyan); }
+.market tbody tr:hover td { background: rgba(246,217,138,0.05); }
+.market td { color: var(--text); }
+.market td a { color: var(--gold-bright); text-decoration: none; }
+.market td a:hover { text-decoration: underline; }
+.market td.pos { color: var(--green); }
+.market td.neg { color: var(--horde); }
+
+.market .money { white-space: nowrap; }
+.market .coin { display: inline-block; width: 0.85em; height: 0.85em; margin: 0 1px 0 2px; vertical-align: -0.08em; background: center / contain no-repeat; }
+.market .coin.g { background-image: url(/goldcraft/art/coin_g.webp); }
+.market .coin.s { background-image: url(/goldcraft/art/coin_s.webp); }
+.market .coin.c { background-image: url(/goldcraft/art/coin_c.webp); }
+
+.market .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.market .cols > div { padding: 16px 20px; border-radius: 8px; border: 1px solid var(--rim); background: var(--panel); }
+.market .cols ul { padding-left: 18px; margin: 0; font-size: 15px; }
+.market .cols li { margin: 4px 0; }
+@media (max-width: 700px) { .market .cols, .market .mk-houses { grid-template-columns: 1fr; } }
+
+.market details.method { max-width: 760px; margin: 24px auto 0; padding: 16px 22px; border-radius: 8px; border: 1px solid var(--rim); background: rgba(0,0,0,0.2); color: var(--muted); }
+.market details.method summary { cursor: pointer; color: var(--gold-bright); font: 700 18px var(--serif); }
+.market details.method p { font-size: 15px; margin: 12px 0 0; }
+.market .mk-cta { margin-top: 40px; text-align: center; }
+.market .mk-cta .cta { margin-top: 18px; }
+.market .profs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; margin: 40px auto 64px; font-size: 15px; }
+.market .profs span { width: 100%; text-align: center; font: 700 18px var(--serif); color: var(--gold); }
+.market .profs a { color: var(--muted); text-decoration: none; }
+.market .profs a:hover { color: var(--gold-bright); }

@@ -14,6 +14,7 @@ const HOUSES = [
   ["US:Normal:Neutral", "Neutral", 0.15],
 ];
 const CACHE_SECONDS = 3 * 3600;
+const TEMPLATE = "2"; // bump when the page design changes, so cached pages are rebuilt at once
 const SHARE = 0.2;      // gold a day assumes you sell 20% of what the house sells a day (as the addon does)
 const ODD_HIGH = 1.6;
 const THIN = 5;
@@ -31,7 +32,7 @@ export async function onRequest(context) {
   const prof = parts.length ? BY_SLUG[parts[0]] : null;
 
   const cache = caches.default;
-  const key = new Request(url.origin + url.pathname);
+  const key = new Request(url.origin + url.pathname + "?t=" + TEMPLATE);
   const hit = await cache.match(key);
   if (hit) return hit;
 
@@ -158,10 +159,10 @@ function money(c) {
   const neg = c < 0; c = Math.abs(c);
   const g = Math.floor(c / 10000), s = Math.floor((c % 10000) / 100), k = c % 100;
   const parts = [];
-  if (g) parts.push(`${g.toLocaleString("en-US")}<span class="g">g</span>`);
-  if (s && g < 100) parts.push(`${s}<span class="s">s</span>`);
-  if (!g && (k || !s)) parts.push(`${k}<span class="c">c</span>`);
-  return (neg ? "−" : "") + parts.join(" ");
+  if (g) parts.push(`${g.toLocaleString("en-US")}<i class="coin g" title="gold"></i>`);
+  if (s && g < 100) parts.push(`${s}<i class="coin s" title="silver"></i>`);
+  if (!g && (k || !s)) parts.push(`${k}<i class="coin c" title="copper"></i>`);
+  return `<span class="money">${neg ? "−" : ""}${parts.join(" ")}</span>`;
 }
 const num = (n) => (n >= 100 ? Math.round(n).toLocaleString("en-US") : n >= 10 ? n.toFixed(0) : n.toFixed(1));
 
@@ -174,10 +175,10 @@ function ago(now, t) {
 }
 
 function houseStats(d) {
-  return HOUSES.map(([mk, label]) => {
+  return `<div class="houses mk-houses">${HOUSES.map(([mk, label]) => {
     const s = d.stats[mk] || {};
-    return `<li><b>${label}</b>: ${s.items ? s.items.toLocaleString("en-US") : 0} items priced, freshest scan ${ago(d.now, s.freshest)}, ${s.players_week || 0} sharing this week</li>`;
-  }).join("");
+    return `<div class="house ${HOUSE_CLASS[label]}"><b>${label}</b><span>${s.items ? s.items.toLocaleString("en-US") : 0} items priced<br>freshest scan ${ago(d.now, s.freshest)}<br>${s.players_week || 0} sharing this week</span></div>`;
+  }).join("")}</div>`;
 }
 
 function craftTable(rows, showProf) {
@@ -210,6 +211,8 @@ function moverList(m) {
 
 const METHOD = `<details class="method"><summary>How these numbers work</summary><p>Prices are shared by players who use the free <a href="/goldcraft/">GoldCraft Companion</a>: auction house data only, nothing about anyone. A price is from the last 3 days; "usually" is the median of the last 14 days, and a price counts at most 1.6× that, so one lone overpriced listing can't make something look valuable. Items with fewer than 5 listed that nobody has been seen buying are left out. <b>Materials</b> is buying everything at today's price or from a vendor, whichever is cheaper. <b>Sells for</b> is after the auction house cut (5%, or 15% at the Neutral houses). <b>Sold a day</b> is measured by comparing scans, with at least 2 hours of data. <b>Gold a day</b> assumes you sell a fifth of what the house sells a day; crafts with measured sales are listed first, then the rest by profit per craft. A guide to what's worth a look, not a promise: prices move.</p></details>`;
 
+const HOUSE_CLASS = { Alliance: "a", Horde: "h", Neutral: "n" };
+
 function page({ title, description, canonical, h1, lead, body, now }) {
   return `<!doctype html>
 <html lang="en">
@@ -218,7 +221,7 @@ function page({ title, description, canonical, h1, lead, body, now }) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
-<meta name="theme-color" content="#060A12">
+<meta name="theme-color" content="#1b120b">
 <link rel="canonical" href="https://spawnframe.dev${canonical}">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -228,29 +231,33 @@ function page({ title, description, canonical, h1, lead, body, now }) {
 <meta property="og:url" content="https://spawnframe.dev${canonical}">
 <meta property="og:image" content="https://spawnframe.dev/goldcraft/art/og.png">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="GoldCraftForever">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/goldcraft/goldcraft.css">
 <link rel="stylesheet" href="/goldcraft/market.css">
 </head>
 <body>
 <header class="top"><div class="wrap">
-  <a class="brand" href="/" aria-label="SpawnFrame home"><img src="/brand/logo-mark.svg" alt="" width="32" height="32"><span>SpawnFrame</span></a>
-  <nav class="nav"><a href="/goldcraft/">GoldCraftForever</a><a href="/goldcraft/market/">Market</a><a class="hide-xs" href="/goldcraft/start/">Get started</a></nav>
+  <a class="mk-brand" href="/goldcraft/"><img src="/goldcraft/art/icon.webp" alt="" width="26" height="26"> GoldCraftForever</a>
+  <nav><a href="/goldcraft/market/">Today's market</a><a href="/goldcraft/start/">Getting started</a><a href="https://www.curseforge.com/wow/addons/goldcraftforever">CurseForge</a></nav>
 </div></header>
-<main class="wrap market"><article class="prose wide">
-<p class="crumbs"><a href="/goldcraft/">GoldCraftForever</a> › <a href="/goldcraft/market/">WoW Forever market</a></p>
-<h1>${h1}</h1>
-<p class="updated">Updated ${new Date(now * 1000).toUTCString().replace(/:\d\d GMT/, " UTC")} · refreshed every few hours</p>
-${lead}
+<main class="wrap market">
+<section class="hero mk-hero">
+  <img class="crest-img" src="/goldcraft/art/emblem_market.webp" alt="" width="76" height="76">
+  <p class="crumbs"><a href="/goldcraft/">GoldCraftForever</a> › <a href="/goldcraft/market/">WoW Forever market</a></p>
+  <h1>${h1}</h1>
+  ${lead}
+  <p class="updated">Updated ${new Date(now * 1000).toUTCString().replace(/:\d\d GMT/, " UTC")} · refreshed every few hours</p>
+</section>
 ${body}
 ${METHOD}
-<div class="cta"><p><b>See this for your own characters, in game:</b> what to craft with what you have, what to post where, and a daily plan. GoldCraftForever is free.</p><p><a class="btn primary" href="https://www.curseforge.com/wow/addons/goldcraftforever">Get GoldCraftForever on CurseForge</a> <a class="btn" href="/goldcraft/start/">How to get started</a></p></div>
-<nav class="profs"><b>By profession:</b> ${PROFS.map((p) => `<a href="/goldcraft/market/${slug(p)}/">${esc(p)}</a>`).join(" · ")}</nav>
-</article></main>
+<div class="note mk-cta"><p><strong>See this for your own characters, in game:</strong> what to craft with what you have, what to post where, and a daily plan. GoldCraftForever is free.</p>
+<div class="cta"><a class="btn gold" href="https://www.curseforge.com/wow/addons/goldcraftforever">Download on CurseForge</a> <a class="btn" href="/goldcraft/start/">Getting started</a> <a class="btn" href="/goldcraft/">About GoldCraftForever</a></div></div>
+<nav class="profs"><span>By profession</span>${PROFS.map((p) => `<a href="/goldcraft/market/${slug(p)}/">${esc(p)}</a>`).join("")}</nav>
+</main>
 <footer class="foot"><div class="wrap">
-  <div><a class="brand" href="/"><img src="/brand/logo-mark.svg" alt="" width="28" height="28"><span>SpawnFrame</span></a><span class="tag">Where ideas take shape</span></div>
-  <nav><a href="/goldcraft/">GoldCraftForever</a><a href="/goldcraft/market/">Market</a><a href="/foreverchat/">ForeverChat</a><a href="/privacy/">Privacy</a><a href="mailto:hello@spawnframe.dev">hello@spawnframe.dev</a></nav>
-  <div class="legal">© 2026 SpawnFrame. Item names are from World of Warcraft. GoldCraftForever is not affiliated with or endorsed by Blizzard Entertainment.</div>
+  <span>GoldCraftForever by SpawnFrame · Item names are from World of Warcraft. Not affiliated with Blizzard Entertainment.</span>
+  <nav><a href="/">SpawnFrame</a><a href="/goldcraft/">GoldCraftForever</a><a href="/privacy/">Privacy</a><a href="mailto:hello@spawnframe.dev">hello@spawnframe.dev</a></nav>
 </div></footer>
 </body>
 </html>`;
@@ -267,7 +274,7 @@ function overviewPage(d) {
       b.count++;
       if (!b.top || r.profit > b.top.profit) b.top = { ...r, house: h[1] };
     }
-    body += `<section class="house"><h2>${h[1]} auction house</h2>
+    body += `<section class="mk-house ${HOUSE_CLASS[h[1]]}"><h2>${h[1]} auction house</h2>
 <h3>Most profitable crafts</h3>${craftTable(top, true)}
 <h3>What sells most</h3>${sellerTable(sellers(d, h).slice(0, 12))}
 <h3>Prices far from usual</h3>${moverList(movers(d, h))}</section>`;
@@ -283,9 +290,8 @@ function overviewPage(d) {
     description: "Today's most profitable crafts, best sellers and price moves at all three WoW Forever auction houses (Alliance, Horde, Neutral), from prices shared by GoldCraft Companion players. Updated every few hours.",
     canonical: "/goldcraft/market/",
     h1: "WoW Forever market today",
-    lead: `<p class="lead">What's worth crafting, what's selling and what's moved at the three WoW Forever auction houses, from prices shared by GoldCraft Companion players.</p><ul class="stats">${houseStats(d)}</ul>
-<h2>Best craft in each profession today</h2>${profTable}`,
-    body,
+    lead: `<p class="lede">What's worth crafting, what's selling and what's moved at the three WoW Forever auction houses, from prices shared by GoldCraft Companion players.</p>${houseStats(d)}`,
+    body: `<section class="mk-best"><h2>Best craft in each profession today</h2>${profTable}</section>` + body,
     now: d.now,
   });
 }
@@ -296,7 +302,7 @@ function professionPage(prof, d) {
     const all = crafts(d, h, prof);
     const selling = all.filter((r) => r.profit > 0).sort(byValue).slice(0, 25);
     any += all.length;
-    body += `<section class="house"><h2>${h[1]} auction house</h2>
+    body += `<section class="mk-house ${HOUSE_CLASS[h[1]]}"><h2>${h[1]} auction house</h2>
 <h3>Most profitable ${esc(prof)} crafts</h3>${craftTable(selling, false)}
 <p class="dim">${all.length} ${esc(prof)} recipes priced here (all materials and the result have a recent price).</p></section>`;
   }
@@ -305,7 +311,7 @@ function professionPage(prof, d) {
     description: `The most profitable ${prof} crafts in WoW Forever today at the Alliance, Horde and Neutral auction houses: cost of materials, sale price after the cut, profit and how many sell a day. Updated every few hours.`,
     canonical: `/goldcraft/market/${slug(prof)}/`,
     h1: `WoW Forever ${esc(prof)}: what's profitable today`,
-    lead: `<p class="lead">Every ${esc(prof)} recipe in WoW Forever, priced at all three auction houses from prices shared by GoldCraft Companion players. Ranked by profit per craft; where sales have been measured, the table also shows how many sell a day.</p><ul class="stats">${houseStats(d)}</ul>${any ? "" : `<p class="dim">No ${esc(prof)} recipes can be priced yet.</p>`}`,
+    lead: `<p class="lede">Every ${esc(prof)} recipe in WoW Forever, priced at all three auction houses from prices shared by GoldCraft Companion players. Ranked by profit per craft; where sales have been measured, the table also shows how many sell a day.</p>${houseStats(d)}${any ? "" : `<p class="dim">No ${esc(prof)} recipes can be priced yet.</p>`}`,
     body,
     now: d.now,
   });
@@ -317,7 +323,7 @@ function unavailablePage(prof) {
     description: "WoW Forever auction house prices and profitable crafts.",
     canonical: prof ? `/goldcraft/market/${slug(prof)}/` : "/goldcraft/market/",
     h1: "WoW Forever market",
-    lead: `<p class="lead">Shared prices can't be loaded right now. Try again in a few minutes.</p>`,
+    lead: `<p class="lede">Shared prices can't be loaded right now. Try again in a few minutes.</p>`,
     body: "",
     now: Math.floor(Date.now() / 1000),
   });
