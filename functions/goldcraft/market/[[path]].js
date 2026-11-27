@@ -14,7 +14,8 @@ const HOUSES = [
   ["US:Normal:Neutral", "Neutral", 0.15],
 ];
 const CACHE_SECONDS = 3 * 3600;
-const TEMPLATE = "2"; // bump when the page design changes, so cached pages are rebuilt at once
+const TEMPLATE = "3"; // bump when the page design changes, so cached pages are rebuilt at once
+const CSS_V = "f0f8d940"; // tools/stamp.py keeps this in step with goldcraft/market.css
 const SHARE = 0.2;      // gold a day assumes you sell 20% of what the house sells a day (as the addon does)
 const ODD_HIGH = 1.6;
 const THIN = 5;
@@ -32,7 +33,7 @@ export async function onRequest(context) {
   const prof = parts.length ? BY_SLUG[parts[0]] : null;
 
   const cache = caches.default;
-  const key = new Request(url.origin + url.pathname + "?t=" + TEMPLATE);
+  const key = new Request(url.origin + url.pathname + "?t=" + TEMPLATE + CSS_V);
   const hit = await cache.match(key);
   if (hit) return hit;
 
@@ -233,8 +234,8 @@ function page({ title, description, canonical, h1, lead, body, now }) {
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="GoldCraftForever">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="/goldcraft/goldcraft.css">
-<link rel="stylesheet" href="/goldcraft/market.css">
+<link rel="stylesheet" href="/goldcraft/goldcraft.css?v=2104ad33">
+<link rel="stylesheet" href="/goldcraft/market.css?v=${CSS_V}">
 </head>
 <body>
 <header class="top"><div class="wrap">

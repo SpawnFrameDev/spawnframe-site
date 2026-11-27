@@ -17,3 +17,14 @@ for page in root.rglob("*.html"):
     if new != text:
         page.write_text(new, encoding="utf-8")
         print("stamped", page.relative_to(root))
+
+# the market pages are built by a function: keep its stylesheet versions in step too
+fn = root / "functions/goldcraft/market/[[path]].js"
+if fn.is_file():
+    text = fn.read_text(encoding="utf-8")
+    h = lambda f: hashlib.md5((root / f).read_bytes()).hexdigest()[:8]
+    new = re.sub(r'const CSS_V = "[0-9a-f]+"', f'const CSS_V = "{h("goldcraft/market.css")}"', text)
+    new = re.sub(r'/goldcraft/goldcraft\.css\?v=[0-9a-f]+', f'/goldcraft/goldcraft.css?v={h("goldcraft/goldcraft.css")}', new)
+    if new != text:
+        fn.write_text(new, encoding="utf-8")
+        print("stamped", fn.relative_to(root))
