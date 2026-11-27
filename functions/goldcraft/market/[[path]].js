@@ -15,7 +15,7 @@ const HOUSES = [
 ];
 const CACHE_SECONDS = 3 * 3600;
 const TEMPLATE = "3"; // bump when the page design changes, so cached pages are rebuilt at once
-const CSS_V = "f0f8d940"; // tools/stamp.py keeps this in step with goldcraft/market.css
+const CSS_V = "493f1385"; // tools/stamp.py keeps this in step with goldcraft/market.css
 const SHARE = 0.2;      // gold a day assumes you sell 20% of what the house sells a day (as the addon does)
 const ODD_HIGH = 1.6;
 const THIN = 5;
