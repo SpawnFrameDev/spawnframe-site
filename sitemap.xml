@@ -15,4 +15,7 @@
   <url><loc>https://spawnframe.dev/goldcraft/market/leatherworking/</loc><changefreq>daily</changefreq></url>
   <url><loc>https://spawnframe.dev/goldcraft/market/mining/</loc><changefreq>daily</changefreq></url>
   <url><loc>https://spawnframe.dev/goldcraft/market/tailoring/</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://spawnframe.dev/goldcraft/market/fishing/</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://spawnframe.dev/goldcraft/market/herbalism/</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://spawnframe.dev/goldcraft/market/skinning/</loc><changefreq>daily</changefreq></url>
 </urlset>

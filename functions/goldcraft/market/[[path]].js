@@ -14,14 +14,15 @@ const HOUSES = [
   ["US:Normal:Neutral", "Neutral", 0.15],
 ];
 const CACHE_SECONDS = 3 * 3600;
-const TEMPLATE = "3"; // bump when the page design changes, so cached pages are rebuilt at once
+const TEMPLATE = "4"; // bump when the page design changes, so cached pages are rebuilt at once
 const CSS_V = "493f1385"; // tools/stamp.py keeps this in step with goldcraft/market.css
 const SHARE = 0.2;      // gold a day assumes you sell 20% of what the house sells a day (as the addon does)
 const ODD_HIGH = 1.6;
 const THIN = 5;
 
 const slug = (p) => p.toLowerCase().replace(/[^a-z]+/g, "-");
-const PROFS = Object.keys(RECIPES.professions).sort();
+const GATHERED = RECIPES.gathered || {};
+const PROFS = [...new Set([...Object.keys(RECIPES.professions), ...Object.keys(GATHERED)])].sort();
 const BY_SLUG = Object.fromEntries(PROFS.map((p) => [slug(p), p]));
 
 export async function onRequest(context) {
@@ -68,6 +69,7 @@ async function load() {
   const ids = new Set();
   for (const rows of Object.values(RECIPES.professions))
     for (const [, out, , mats] of rows) { ids.add(out); for (let i = 0; i < mats.length; i += 2) ids.add(mats[i]); }
+  for (const list of Object.values(GATHERED)) for (const id of list) ids.add(id);
   const r = await fetch(`${SUPABASE}/rest/v1/rpc/public_market`, {
     method: "POST",
     headers: { apikey: KEY, "Content-Type": "application/json" },
@@ -108,7 +110,7 @@ function crafts(d, house, onlyProf) {
   const [mk, , cut] = house;
   const out = [];
   for (const prof of onlyProf ? [onlyProf] : PROFS) {
-    for (const [name, item, qty, mats, cd] of RECIPES.professions[prof]) {
+    for (const [name, item, qty, mats, cd] of RECIPES.professions[prof] || []) {
       const p = d.prices[mk] && d.prices[mk][item];
       if (!p || !(p.now > 0) || unproven(p)) continue;
       let cost = 0, ok = true;
@@ -131,6 +133,20 @@ function crafts(d, house, onlyProf) {
 function byValue(a, b) {
   if ((a.goldDay > 0) !== (b.goldDay > 0)) return a.goldDay > 0 ? -1 : 1;
   return a.goldDay > 0 ? b.goldDay - a.goldDay : b.profit - a.profit;
+}
+
+// what a gathering profession brings in, sold raw: price after the cut, sold a day, gold a day at
+// your share (nothing to buy: you gather it)
+function gathered(d, house, prof) {
+  const [mk, , cut] = house;
+  const out = [];
+  for (const id of GATHERED[prof] || []) {
+    const p = d.prices[mk] && d.prices[mk][id];
+    if (!p || !(p.now > 0) || unproven(p)) continue;
+    const each = valueUnit(p) * (1 - cut);
+    out.push({ id, name: nameOf(d, id), each, perDay: p.perDay || 0, listed: p.qty, goldDay: p.perDay > 0 ? each * p.perDay * SHARE : 0 });
+  }
+  return out.sort((a, b) => (b.goldDay - a.goldDay) || (b.each - a.each));
 }
 
 function sellers(d, house) {
@@ -200,6 +216,16 @@ function cooldown(sec) {
   const txt = days >= 1.5 ? `once every ${Math.round(days)} days` : days >= 0.9 ? "once a day" : `once every ${Math.round(sec / 3600)} h`;
   return ` <span class="dim">(cooldown: ${txt})</span>`;
 }
+
+function gatherTable(rows) {
+  if (!rows.length) return `<p class="dim">Not enough shared prices for this yet. They fill in as more players share.</p>`;
+  return `<div class="tbl"><table><thead><tr><th>Item</th><th>Sells for</th><th>Sold a day</th><th>Listed</th><th>Gold a day</th></tr></thead><tbody>${rows
+    .map((r) => `<tr><td>${esc(r.name)}</td><td>${money(r.each)}</td><td>${r.perDay ? num(r.perDay) : "—"}</td><td>${r.listed.toLocaleString("en-US")}</td><td>${r.goldDay ? money(r.goldDay) : "—"}</td></tr>`)
+    .join("")}</tbody></table></div>`;
+}
+
+const RAW = { Herbalism: "herbs", Mining: "ore, bars, stone and gems", Skinning: "leather, hides and scales", Fishing: "raw fish" };
+const RAW_TITLE = { Herbalism: "herb prices", Mining: "ore, bar and gem prices", Skinning: "leather and hide prices", Fishing: "fish prices" };
 
 function sellerTable(rows) {
   if (!rows.length) return `<p class="dim">No sales measured here yet.</p>`;
@@ -303,20 +329,36 @@ function overviewPage(d) {
 
 function professionPage(prof, d) {
   let body = "", any = 0;
+  const gather = !!GATHERED[prof];
+  const hasRecipes = (RECIPES.professions[prof] || []).length > 0;
   for (const h of HOUSES) {
-    const all = crafts(d, h, prof);
-    const selling = all.filter((r) => r.profit > 0).sort(byValue).slice(0, 25);
-    any += all.length;
-    body += `<section class="mk-house ${HOUSE_CLASS[h[1]]}"><h2>${h[1]} auction house</h2>
-<h3>Most profitable ${esc(prof)} crafts</h3>${craftTable(selling, false)}
-<p class="dim">${all.length} ${esc(prof)} recipes priced here (all materials and the result have a recent price).</p></section>`;
+    let sec = "";
+    if (gather) {
+      const raw = gathered(d, h, prof);
+      any += raw.length;
+      sec += `<h3>${esc(prof)} ${esc(RAW[prof])} sold raw</h3>${gatherTable(raw.slice(0, 30))}`;
+    }
+    if (hasRecipes) {
+      const all = crafts(d, h, prof);
+      const selling = all.filter((r) => r.profit > 0).sort(byValue).slice(0, 25);
+      any += all.length;
+      sec += `<h3>Most profitable ${esc(prof)} crafts</h3>${craftTable(selling, false)}
+<p class="dim">${all.length} ${esc(prof)} recipes priced here (all materials and the result have a recent price).</p>`;
+    }
+    body += `<section class="mk-house ${HOUSE_CLASS[h[1]]}"><h2>${h[1]} auction house</h2>${sec}</section>`;
   }
+  const what = gather ? RAW_TITLE[prof] : "most profitable crafts";
   return page({
-    title: `WoW Forever ${prof}: most profitable crafts today (all 3 auction houses)`,
-    description: `The most profitable ${prof} crafts in WoW Forever today at the Alliance, Horde and Neutral auction houses: cost of materials, sale price after the cut, profit and how many sell a day. Updated every few hours.`,
+    title: `WoW Forever ${prof}: ${what} today (all 3 auction houses)`,
+    description: gather
+      ? `What ${prof} ${RAW[prof]} sell for in WoW Forever today at the Alliance, Horde and Neutral auction houses: price after the cut, how many sell a day and the gold a day they can bring.${hasRecipes ? ` Plus the most profitable ${prof} crafts.` : ""} Updated every few hours.`
+      : `The most profitable ${prof} crafts in WoW Forever today at the Alliance, Horde and Neutral auction houses: cost of materials, sale price after the cut, profit and how many sell a day. Updated every few hours.`,
     canonical: `/goldcraft/market/${slug(prof)}/`,
-    h1: `WoW Forever ${esc(prof)}: what's profitable today`,
-    lead: `<p class="lede">Every ${esc(prof)} recipe in WoW Forever, priced at all three auction houses from prices shared by GoldCraft Companion players. Ranked by profit per craft; where sales have been measured, the table also shows how many sell a day.</p>${houseStats(d)}${any ? "" : `<p class="dim">No ${esc(prof)} recipes can be priced yet.</p>`}`,
+    h1: gather ? `WoW Forever ${esc(prof)}: what sells today` : `WoW Forever ${esc(prof)}: what's profitable today`,
+    lead: (gather
+      ? `<p class="lede">Most ${esc(prof)} money is in selling ${esc(RAW[prof])} as they are. What each sells for at all three auction houses after the cut, how many sell a day, and the gold a day selling a fifth of that would bring, from prices shared by GoldCraft Companion players.${hasRecipes ? ` Its recipes follow.` : ""}</p>`
+      : `<p class="lede">Every ${esc(prof)} recipe in WoW Forever, priced at all three auction houses from prices shared by GoldCraft Companion players. Ranked by profit per craft; where sales have been measured, the table also shows how many sell a day.</p>`)
+      + `${houseStats(d)}${any ? "" : `<p class="dim">Nothing for ${esc(prof)} can be priced yet.</p>`}`,
     body,
     now: d.now,
   });
