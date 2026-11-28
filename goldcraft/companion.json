@@ -1,12 +1,13 @@
 {
-  "version": "0.5.2",
-  "url": "https://spawnframe.dev/goldcraft/download/GoldCraftCompanion-0.5.2.zip",
-  "sha256": "2f1fc85f96a165e3b46bb013332c8848caf978739aff4dee17a5b935c28d4f41",
-  "bytes": 18557658,
+  "version": "0.5.3",
+  "url": "https://spawnframe.dev/goldcraft/download/GoldCraftCompanion-0.5.3.zip",
+  "sha256": "9c0b85e15497534fb1a0db4691bc934217a7f2170aa24effffe48288e84c8590",
+  "bytes": 18558325,
   "released": "2026-11-28",
   "min_version": "0.0.0",
   "notes": [
-    "Shared prices only for the regions you play in: prices from another region (an EU player's, for a US player) are no longer downloaded or shown, and any already downloaded are removed",
-    "When houses from more than one region are listed (before your first scan), they say which region, for example \"Alliance (EU)\""
+    "Shared prices only for your region and ruleset: each Forever ruleset (Normal, PvP, RP, Hardcore) has its own auction houses, so prices from another ruleset (a second \"Horde\" or \"Neutral\" row) are no longer downloaded or shown, and any already downloaded are removed",
+    "When you start playing on another region or ruleset, its last 30 days of shared prices download in full",
+    "When houses from more than one region or ruleset are listed (before your first scan), they say which, for example \"Horde (PvP)\" or \"Alliance (EU)\""
   ]
 }
