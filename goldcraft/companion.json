@@ -1,12 +1,12 @@
 {
-  "version": "0.5.1",
-  "url": "https://spawnframe.dev/goldcraft/download/GoldCraftCompanion-0.5.1.zip",
-  "sha256": "ceb2ed408234f33c4fef86758ce07ae00f24431a732d93c275291d312e1436fb",
-  "bytes": 18555831,
-  "released": "2026-11-27",
+  "version": "0.5.2",
+  "url": "https://spawnframe.dev/goldcraft/download/GoldCraftCompanion-0.5.2.zip",
+  "sha256": "2f1fc85f96a165e3b46bb013332c8848caf978739aff4dee17a5b935c28d4f41",
+  "bytes": 18557658,
+  "released": "2026-11-28",
   "min_version": "0.0.0",
   "notes": [
-    "Fix: vendor prices were stored the wrong way round, so item pages showed what a merchant charges as \"A vendor pays\". Shared item data is corrected too",
-    "Shares vendor sell prices GoldCraftForever 0.30.0 learns from your sales, for items the game reports no price for"
+    "Shared prices only for the regions you play in: prices from another region (an EU player's, for a US player) are no longer downloaded or shown, and any already downloaded are removed",
+    "When houses from more than one region are listed (before your first scan), they say which region, for example \"Alliance (EU)\""
   ]
 }
