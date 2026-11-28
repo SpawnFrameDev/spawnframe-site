@@ -1,13 +1,11 @@
 {
-  "version": "0.5.3",
-  "url": "https://spawnframe.dev/goldcraft/download/GoldCraftCompanion-0.5.3.zip",
-  "sha256": "9c0b85e15497534fb1a0db4691bc934217a7f2170aa24effffe48288e84c8590",
-  "bytes": 18558325,
+  "version": "0.5.4",
+  "url": "https://spawnframe.dev/goldcraft/download/GoldCraftCompanion-0.5.4.zip",
+  "sha256": "940c5721e47180638e325517e50f1389443e461b8420742d8a25a600606903a3",
+  "bytes": 18560566,
   "released": "2026-11-28",
   "min_version": "0.0.0",
   "notes": [
-    "Shared prices only for your region and ruleset: each Forever ruleset (Normal, PvP, RP, Hardcore) has its own auction houses, so prices from another ruleset (a second \"Horde\" or \"Neutral\" row) are no longer downloaded or shown, and any already downloaded are removed",
-    "When you start playing on another region or ruleset, its last 30 days of shared prices download in full",
-    "When houses from more than one region or ruleset are listed (before your first scan), they say which, for example \"Horde (PvP)\" or \"Alliance (EU)\""
+    "Gathering professions on the Crafting page: Herbalism, Skinning and Fishing now have tabs, and Mining shows its ore, bars, stone and gems too: what each sells for after the cut, how many sell a day and the gold a day selling a fifth of that brings (needs GoldCraftForever 0.32 or newer)"
   ]
 }
